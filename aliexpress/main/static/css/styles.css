@@ -1,0 +1,39 @@
+/* --- Default Styles --- */
+
+body { overflow-x: hidden; font-family: 'Nanum Gothic', sans-serif; }
+
+h5 { font-size: 23px; color: #FFCD03; }
+h4 { font-size: 23px; color: #fff; }
+h1 { font-size: 65px; font-weight: normal; color: #FFCD03; }
+strong { color: #FF4747; font-weight: normal; }
+
+
+
+/* Index.html Styles min-width: 1500px; */
+
+.customnav { padding: 1rem 6rem;   }
+
+.Main {
+  background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(../images/sunset.jpg);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  text-align: center;
+ }
+
+.customrow { justify-content: space-between; margin-left: -50px; margin-right: -50px; }
+ section { height: 55vh; border: 3px solid; }
+ .service { border-color: #FF4747; flex: 0 0 72.666667%; max-width: 72.666667%; }
+ .history { border-color: #FFCD03; }
+
+ /* --- Screen Responsiveness */
+
+ @media screen and (max-width: 1500px) {
+   h1 { font-size: 55px; }
+   h4, h5 { font-size: 20px; }
+
+   .customrow { margin-right: -15px; margin-left: -15px; }
+   .service { flex: 0 0 66.666667%; max-width: 66.666667%; }
+ }
