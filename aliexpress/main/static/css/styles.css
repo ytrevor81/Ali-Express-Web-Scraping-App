@@ -1,15 +1,15 @@
 /* --- Default Styles --- */
 
 body { overflow-x: hidden; font-family: 'Nanum Gothic', sans-serif; }
-
 h5 { font-size: 23px; color: #FFCD03; }
 h4 { font-size: 23px; color: #fff; }
 h1 { font-size: 65px; font-weight: normal; color: #FFCD03; }
 strong { color: #FF4747; font-weight: normal; }
+a { color: #FFCD03; }
+a:hover { color: #FFCD03; text-decoration: underline; cursor: pointer; }
+a:active { color: #FFCD03; text-decoration: underline; }
 
-
-
-/* Index.html Styles min-width: 1500px; */
+/* --- Index.html Styles min-width: 1500px; --- */
 
 .customnav { padding: 1rem 6rem;   }
 
@@ -23,12 +23,30 @@ strong { color: #FF4747; font-weight: normal; }
   text-align: center;
  }
 
-.customrow { justify-content: space-between; margin-left: -50px; margin-right: -50px; }
+/* --- Search Bar --- */
+
+.product-search { margin: 100px 0 30px 0; }
+.product-search input {
+    width: 100%;
+    text-align: center;
+    height: 60px;
+    background-color: #333;
+    border: none;
+    border-bottom: 5px solid #FF4747;
+    font-size: 25px;
+    color: #fff;
+  }
+
+/* --- Main App --- */
+.customcontainer { max-width: 1250px; margin-bottom: 25px; }
+.customrow { justify-content: space-between; margin: 0; }
  section { height: 55vh; border: 3px solid; }
  .service { border-color: #FF4747; flex: 0 0 72.666667%; max-width: 72.666667%; }
  .history { border-color: #FFCD03; }
 
- /* --- Screen Responsiveness */
+ footer h5 { margin-bottom: 15px; }
+
+ /* --- Screen Responsiveness --- */
 
  @media screen and (max-width: 1500px) {
    h1 { font-size: 55px; }

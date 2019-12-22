@@ -20,30 +20,43 @@
 
   <body>
     <div class="Main" id="Main">
+
+      <!-- Navbar/Top Info -->
       <header class="customnav navbar">
         <h5>Information</h5>
         <h1>Ali<strong>Express</strong> Data<strong>Scraper</strong></h1>
         <h5>Sign In</h5>
       </header>
-      <div class="container">
+
+      <!-- Main App -->
+      <div class="customcontainer container">
+
+        <!-- Product Search Bar -->
+        <form action="." class="product-search" method="GET">
+          <input name="search" type="text" placeholder="Product name here..."/>
+        </form>
+
+        <!-- Main Service and User History -->
         <div class="customrow row">
+
+          <!-- Main Service -->
           <section class="service col-lg-8 col-md-8">
 
           </section>
+
+          <!-- User History -->
           <section class="history col-lg-3 col-md-3">
 
           </section>
         </div>
       </div>
+      <footer>
+        <h5><a href="#">Go to my website</a></h5>
+        <h5>&copy; 2020 - Trevor Youngquist</h5>
+      </footer>
     </div>
 
-
-
-
-
-
-
-
+    <!-- Javascript -->
     <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
