@@ -1,8 +1,8 @@
 /* --- Default Styles --- */
 
 body { overflow-x: hidden; font-family: 'Nanum Gothic', sans-serif; }
-h5 { font-size: 23px; color: #FFCD03; }
-h4 { font-size: 22px; color: #fff; }
+h5 { font-size: 21px; color: #FFCD03; }
+h4 { font-size: 20px; color: #fff; }
 h1 { font-size: 65px; font-weight: normal; color: #FFCD03; }
 strong { color: #FF4747; font-weight: normal; }
 
@@ -57,6 +57,15 @@ strong { color: #FF4747; font-weight: normal; }
  }
  .title-box h4 { margin-bottom: 0; }
 
+
+.web-scraping-services {
+    margin: 30px 50px 0 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 33vh;
+    text-align: left;
+}
  .slidecontainer {
   width: 100%;
 }
@@ -100,6 +109,7 @@ strong { color: #FF4747; font-weight: normal; }
   outline: none;
   transition: 0.5s;
   margin-right: 20px;
+  cursor: pointer;
 }
 .checkbox::before {
   content: '';
@@ -121,6 +131,16 @@ strong { color: #FF4747; font-weight: normal; }
   border-color: #FFCD03;
   transform: rotate(45deg) translate(5px, -10px);
 }
+.scraping-button {
+    color: #fff;
+    background-color: rgba(225,225,225,0.1);
+    border: 2px solid #FFCD03;
+    height: 70px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+.scraping-button:hover { background-color: #333; transition: 0.2s; border-color: #fff; }
+.scraping-button:active { background-color: #333; transition: 0.2s; border-color: #fff; }
 
 
 .cluster {
@@ -134,22 +154,28 @@ strong { color: #FF4747; font-weight: normal; }
     width: 33.33%;
     height: 70px;
   }
-.download-csv a {
+.download-csv button {
+  border: none;
+  color: #fff;
+  font-size: 20px;
   height: 100%;
   width: 100%;
-  padding: 25px;
 }
-.email-data {
+.email-save {
   display: flex;
   width: 66.63%;
   height: 70px;
   align-items: center;
 }
-.email-data a {
+.email-save button {
+  border: none;
+  color: #fff;
+  font-size: 20px;
   height: 100%;
   width: 50%;
-  padding: 25px;
 }
+.cluster button:hover { background-color: #333; transition: 0.2s; }
+.cluster button:active { background-color: #333; transition: 0.2s}
 
 
  /*--- User History --- */
