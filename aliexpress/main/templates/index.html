@@ -41,16 +41,40 @@
 
           <!-- Main Service -->
           <section class="service col-lg-8 col-md-8">
+            <div class="red title-box">
+              <h4>Gather data on the Top 100+ products from your search!</h4>
+            </div>
 
+            <!-- Web Scraping Tools -->
+            <form class="web-scraping-services" action="." method="GET">
+              <div class="slidecontainer">
+                <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+              </div>
+              <label class="checkbox-label"><input class="checkbox" type="checkbox" name="">Include ePacket</input></label>
+              <button class="scraping-button"type="submit" name="scraping-button">Collect Data</button>
+            </form>
+
+            <!-- Button Cluster -->
+            <footer class="cluster">
+              <form class="download-csv" action="." method="GET">
+                <a class="yellow cluster-button"name="download-csv" href="#"><h4>Download .CSV</h4></a>
+              </form>
+              <form class="email-save" action="." method="POST">
+                <a class="orange cluster-button"name="download-csv" href="#"><h4>Email .CSV</h4></a>
+                <a class="red cluster-button"name="download-csv" href="#"><h4>Save Data</h4></a>
+              </form>
+            </footer>
           </section>
 
           <!-- User History -->
           <section class="history col-lg-3 col-md-3">
-
+            <div class="yellow title-box">
+              <h4>History</h4>
+            </div>
           </section>
         </div>
       </div>
-      <footer>
+      <footer class="bottom-of-app">
         <h5><a href="#">Go to my website</a></h5>
         <h5>&copy; 2020 - Trevor Youngquist</h5>
       </footer>
