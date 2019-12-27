@@ -1,43 +1,13 @@
 from pandas import DataFrame
 from bs4 import BeautifulSoup
 from .webscrape import *
+from .csv_handling import *
 
 
 class PageSourceParsing(object):
     '''Using BeautifulSoup, this will use take in the search input from views.py and call
     the BrowserControl methods to prepare the page source, process the page source and
     parse the necessary data from the html, and close the browser'''
-
-    @classmethod
-    def ratings_fix(cls, rating):
-        '''TEMPORARY FIX -- Appends the ratings list until the length reaches 60 elements'''
-        if len(rating) != 60:
-            print('Beginning while loop')
-            while len(rating) != 60:
-                rating.append('-')
-            ratings = rating
-            return ratings
-        else:
-            return rating
-
-    @classmethod
-    def convert_to_csv(cls, search, checked, titles, nf_prices, rating, nf_sold, suppliers, nf_shipping):
-        '''Converts all the list data into a .csv file, and if the checked parameter doesn't equal None,
-        the .csv file will have an extra column for 'Free Shipping' information'''
-
-        prices = [i.replace('US $', '') for i in nf_prices]     #these 3 list comprehensions will process the data from each 'not finished' list into correct format
-        sold = [i.replace(' Sold', '') for i in nf_sold]
-        shipping = ["XXX" if i == "Free Shipping" else '-' for i in nf_shipping]
-        print(len(titles), len(prices), len(rating), len(sold), len(suppliers), len(shipping))
-        ratings = PageSourceParsing.ratings_fix(rating)
-
-        if checked != None:
-            df = DataFrame({'Product': titles, 'Price': prices, 'Rating':ratings, '# Sold':sold, 'Supplier':suppliers, 'Free Shipping': shipping})
-        else:
-            df = DataFrame({'Product': titles, 'Price': prices, 'Rating':ratings, '# Sold':sold, 'Supplier':suppliers})
-        df.index += 1
-        df.to_csv('{}.csv'.format(search), index=True)
-
 
     @classmethod
     def page_source(cls, search, checked):
@@ -63,4 +33,4 @@ class PageSourceParsing(object):
         suppliers = [x.get_text() for x in htmlsupplier]
         nf_shipping = [x.get_text() for x in htmlshipping]
 
-        PageSourceParsing.convert_to_csv(search, checked, titles, nf_prices, ratings, nf_sold, suppliers, nf_shipping) #will convert data into a .csv file
+        CSV_Handling.convert_to_csv(search, checked, titles, nf_prices, ratings, nf_sold, suppliers, nf_shipping) #will convert data into a .csv file
