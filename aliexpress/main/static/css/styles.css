@@ -26,22 +26,8 @@ strong { color: #FF4747; font-weight: normal; }
   text-align: center;
  }
 
-/* --- Search Bar --- */
-
-.product-search { margin: 100px 0 30px 0; }
-.product-search input {
-    width: 100%;
-    text-align: center;
-    height: 60px;
-    background-color: #333;
-    border: none;
-    border-bottom: 5px solid #FF4747;
-    font-size: 25px;
-    color: #fff;
-  }
-
 /* --- Main App --- */
-.customcontainer { max-width: 1250px; margin-bottom: 25px; }
+.customcontainer { margin-top: 175px; max-width: 1250px; margin-bottom: 25px; }
 .customrow { justify-content: space-between; margin: 0; }
  section { height: 55vh; border: 3px solid; }
 
@@ -131,6 +117,23 @@ strong { color: #FF4747; font-weight: normal; }
   border-color: #FFCD03;
   transform: rotate(45deg) translate(5px, -10px);
 }
+.product-search {
+  margin: 100px 0 30px 0;
+  position: absolute;
+  width: 138%;
+  top: -38%;
+  left: 0%;
+  }
+.product-search input {
+    width: 100%;
+    text-align: center;
+    height: 60px;
+    background-color: #333;
+    border: none;
+    border-bottom: 5px solid #FF4747;
+    font-size: 25px;
+    color: #fff;
+  }
 .scraping-button {
     color: #fff;
     background-color: rgba(225,225,225,0.1);
@@ -160,6 +163,7 @@ strong { color: #FF4747; font-weight: normal; }
   font-size: 20px;
   height: 100%;
   width: 100%;
+  cursor: pointer;
 }
 .email-save {
   display: flex;
@@ -173,6 +177,7 @@ strong { color: #FF4747; font-weight: normal; }
   font-size: 20px;
   height: 100%;
   width: 50%;
+  cursor: pointer;
 }
 .cluster button:hover { background-color: #333; transition: 0.2s; }
 .cluster button:active { background-color: #333; transition: 0.2s}

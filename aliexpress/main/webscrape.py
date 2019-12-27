@@ -9,7 +9,6 @@ import random
 '''All functionality related to webscraping goes into this file'''
 
 delay = random.randint(10,100)
-scrollheight = 1000
 
 class BrowserControl(object):
     '''Controls the browser's behavior and requests. This class consists of only 2 methods for convinience:
@@ -19,6 +18,7 @@ class BrowserControl(object):
     @classmethod
     def login_page(cls, webdriver):
         '''Logins into the fake account'''
+        print(delay)
         WebDriverWait(webdriver, delay).until(EC.frame_to_be_available_and_switch_to_it((By.ID,"alibaba-login-box")))     #makes <iframe> login-form useable
         WebDriverWait(webdriver, delay)    #waits for a random amount of time, so that aliexpress cannot detect this app as a  robot
 
@@ -34,9 +34,10 @@ class BrowserControl(object):
     @classmethod
     def scroll_timer(cls, webdriver):
         '''Sets a timer for scrolling down the page'''
+        scrollheight = 1000
         for timer in range(0,50):
             webdriver.execute_script("window.scrollTo(0, "+ str(scrollheight) +")")
-            y += 1000
+            scrollheight += 1000
             time.sleep(1)
 
     @classmethod
@@ -47,13 +48,12 @@ class BrowserControl(object):
         link = "https://www.aliexpress.com/wholesale?catId=0&initiative_id=SB_20181225216320&SearchText=" + search  #main link used for this webapp
         chromepath = "C://Users/User/Desktop/chromedriver/chromedriver.exe"     #path of robot-controlled browser
         driver = webdriver.Chrome(chromepath)   #opens browser
-        #driver.set_window_position(-10000,0)    #keeps the browser out of the user's sight
-        driver.get(ali)     #sends request
-        
-        self.login_page(driver)     #logins into the account
+        driver.get(link)     #sends request
+
+        BrowserControl.login_page(driver)     #logins into the account
 
         WebDriverWait(driver, delay).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="search-key"]')))   #locates the search-bar of the page, just to add extra time
-        self.scroll_timer(driver)   #scrolls down the page at a specific time
+        BrowserControl.scroll_timer(driver)   #scrolls down the page at a specific time
 
         return driver   #returns webdriver object to data_parser.py for BeautifulSoup processing
 

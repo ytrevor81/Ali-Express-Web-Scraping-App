@@ -18,6 +18,13 @@ shipping = ['Free Shipping', 'Free Shipping', 'Shipping: US $0.71', 'Free Shippi
 #sold2 = [i.replace(' Sold', '') for i in sold]
 #shipping2 = ["XXX" if i == "Free Shipping" else '-' for i in shipping]
 
+if len(ratings) != 60:
+    while len(ratings) != 60:
+        ratings.append('-')
+    print(len(ratings), ratings)
+else:
+    print('what')
+
 #print(prices2, len(prices2))
 #print(sold2, len(sold2))
 #print(shipping2, len(shipping2))

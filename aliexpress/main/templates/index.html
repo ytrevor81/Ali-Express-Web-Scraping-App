@@ -31,10 +31,10 @@
       <!-- Main App -->
       <div class="customcontainer container">
 
-        <!-- Product Search Bar -->
-        <form id="scraping-form" action="." class="product-search" method="GET">
+        <!-- Product Search Bar
+        <form id="product-search" action="." class="product-search" method="GET">
           <input type="text" name="product" placeholder="Product name here..."/>
-        </form>
+        </form>-->
 
         <!-- Main Service and User History -->
         <div class="customrow row">
@@ -47,11 +47,14 @@
 
             <!-- Web Scraping Tools -->
             <form id="scraping-form" class="web-scraping-services" action="." method="GET">
+              <div class="product-search">
+                <input type="text" name="product" placeholder="Product name here..."/>
+              </div>
               <div class="slidecontainer">
                 <input type="range" name"amount" min="1" max="100" value="50" class="slider" id="myRange">
               </div>
               <label class="checkbox-label"><input class="checkbox" type="checkbox" name="freeshipping">Check for Free Shipping </input></label>
-              <button for="scraping-form" class="scraping-button" type="submit" name="scraper">Collect Data</button>
+              <button class="scraping-button" type="submit">Collect Data</button>
             </form>
 
             <!-- Button Cluster -->
@@ -81,6 +84,7 @@
     </div>
 
     <!-- Javascript -->
+
     <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
