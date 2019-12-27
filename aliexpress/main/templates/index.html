@@ -32,8 +32,8 @@
       <div class="customcontainer container">
 
         <!-- Product Search Bar -->
-        <form action="." class="product-search" method="GET">
-          <input name="search" type="text" placeholder="Product name here..."/>
+        <form id="scraping-form" action="." class="product-search" method="GET">
+          <input type="text" name="product" placeholder="Product name here..."/>
         </form>
 
         <!-- Main Service and User History -->
@@ -42,16 +42,16 @@
           <!-- Main Service -->
           <section class="service col-lg-8 col-md-8">
             <div class="red title-box">
-              <h4>Gather data on the Top 100+ products from your search!</h4>
+              <h4>Gather data on the Top 50+ products from your search!</h4>
             </div>
 
             <!-- Web Scraping Tools -->
-            <form class="web-scraping-services" action="." method="GET">
+            <form id="scraping-form" class="web-scraping-services" action="." method="GET">
               <div class="slidecontainer">
-                <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                <input type="range" name"amount" min="1" max="100" value="50" class="slider" id="myRange">
               </div>
-              <label class="checkbox-label"><input class="checkbox" type="checkbox" name="">Include ePacket</input></label>
-              <button class="scraping-button" type="submit" name="scraper">Collect Data</button>
+              <label class="checkbox-label"><input class="checkbox" type="checkbox" name="freeshipping">Check for Free Shipping </input></label>
+              <button for="scraping-form" class="scraping-button" type="submit" name="scraper">Collect Data</button>
             </form>
 
             <!-- Button Cluster -->
