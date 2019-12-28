@@ -23,59 +23,25 @@
 
       <!-- Navbar/Top Info -->
       <header class="customnav navbar">
-        <h5>Information</h5>
+        <h5><a data-toggle="modal" data-target=".info">Information</a></h5>
         <h1>Ali<strong>Express</strong> Data<strong>Scraper</strong></h1>
-        <h5>Sign In</h5>
+        {% if user.is_authenticated %}
+          <div class="user-messages">
+            <h5>Welcome, <strong>{{ user.username }}</strong></h5>
+            <h5><a href="/logout">Sign Out</a></h5>
+          </div>
+        {% else %}
+          <h5><a data-toggle="modal" data-target=".login">Sign In</a></h5>
+        {% endif %}
       </header>
 
       <!-- Main App -->
       <div class="customcontainer container">
 
-        <!-- Product Search Bar
-        <form id="product-search" action="." class="product-search" method="GET">
-          <input type="text" name="product" placeholder="Product name here..."/>
-        </form>-->
+        <!-- Main App page and Register page -->
+        {% block content %}
+        {% endblock %}
 
-        <!-- Main Service and User History -->
-        <div class="customrow row">
-
-          <!-- Main Service -->
-          <section class="service col-lg-8 col-md-8">
-            <div class="red title-box">
-              <h4>Gather data on the Top 50+ products from your search!</h4>
-            </div>
-
-            <!-- Web Scraping Tools -->
-            <form id="scraping-form" class="web-scraping-services" action="." method="GET">
-              <div class="product-search">
-                <input type="text" name="product" placeholder="Product name here..."/>
-              </div>
-              <div class="slidecontainer">
-                <input type="range" name"amount" min="1" max="100" value="50" class="slider" id="myRange">
-              </div>
-              <label class="checkbox-label"><input class="checkbox" type="checkbox" name="freeshipping">Check for Free Shipping </input></label>
-              <button class="scraping-button" type="submit">Collect Data</button>
-            </form>
-
-            <!-- Button Cluster -->
-            <footer class="cluster">
-              <form class="download-csv" action="." method="GET">
-                <button class="yellow" name="download" href="#">Download .CSV</button>
-              </form>
-              <form class="email-save" action="." method="POST">
-                <button class="orange" name="email-csv" href="#">Email .CSV</button>
-                <button class="red" name="save-data" href="#">Save Data</button>
-              </form>
-            </footer>
-          </section>
-
-          <!-- User History -->
-          <section class="history col-lg-3 col-md-3">
-            <div class="yellow title-box">
-              <h4>History</h4>
-            </div>
-          </section>
-        </div>
       </div>
       <footer class="bottom-of-app">
         <h5><a href="#">Go to my website</a></h5>
@@ -84,7 +50,6 @@
     </div>
 
     <!-- Javascript -->
-
     <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>

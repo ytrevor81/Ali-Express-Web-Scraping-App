@@ -14,7 +14,9 @@ strong { color: #FF4747; font-weight: normal; }
 
 /* --- Index.html Styles min-width: 1500px; --- */
 
-.customnav { padding: 1rem 6rem;   }
+.customnav { padding: 1rem 6rem; }
+.customnav a { color: #FFCD03; }
+.customnav a:hover { color: #FFCD03; text-decoration: underline; cursor: pointer; }
 
 .Main {
   background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(../images/sunset.jpg);
@@ -30,6 +32,31 @@ strong { color: #FF4747; font-weight: normal; }
 .customcontainer { margin-top: 175px; max-width: 1250px; margin-bottom: 25px; }
 .customrow { justify-content: space-between; margin: 0; }
  section { height: 55vh; border: 3px solid; }
+
+/* --- Modals --- */
+.login-dialog { margin-top: 5%; max-width: 600px; }
+.login-content { background-color: rgba(0,0,0,0.4); border: 2px solid #FF4747; }
+.login-header { border: none; }
+.login-title { margin-left: 40%; font-size: 27px; }
+.login-close { color: #fff; }
+.login-body label {
+    font-size: 18px;
+    color: #FFCD03;
+    margin-right: 20px;
+  }
+.login-body input {
+    width: 400px;
+    background-color: #333;
+    border: none;
+    border-bottom: 2px solid #FF4747;
+  }
+
+
+.login-footer { border: none; }
+
+/* --- Register --- */
+.register-container { font-size: 18px; color: #FFCD03; }
+.register-container .helptext { display: none; }
 
  /* --- Main Serivce --- */
  .service { border-color: #FF4747; flex: 0 0 72.666667%; max-width: 72.666667%; padding: 0; }
@@ -157,14 +184,17 @@ strong { color: #FF4747; font-weight: normal; }
     width: 33.33%;
     height: 70px;
   }
-.download-csv button {
+.download-csv a {
   border: none;
   color: #fff;
   font-size: 20px;
   height: 100%;
   width: 100%;
+  padding:  20px;
   cursor: pointer;
 }
+.download-csv a:hover { background-color: #333; transition: 0.2s; text-decoration: none; }
+.download-csv a:active { background-color: #333; transition: 0.2s; text-decoration: none; }
 .email-save {
   display: flex;
   width: 66.63%;

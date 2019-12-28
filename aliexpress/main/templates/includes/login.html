@@ -1,0 +1,21 @@
+<div class="login modal" tabindex="-1" role="dialog">
+  <div class="login-dialog modal-dialog" role="document">
+    <div class="login-content modal-content">
+      <div class="login-header modal-header">
+        <h5 class="login-title modal-title">Sign In</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span class="login-close"aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form class="" action="." method="POST">
+        <div class="login-body modal-body">
+          {% csrf_token %}
+          {{ form }}
+        </div>
+        <div class="login-footer modal-footer">
+          <button class="login-button" type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -17,19 +17,12 @@ class CSV_Handling(object):
         print(len(titles), len(prices), len(rating), len(sold), len(suppliers), len(shipping))
         ratings = CSV_Handling.ratings_fix(rating)
 
-        if checked != None:
+        if checked != None:     #pandas will convert these lists into a usable table
             df = DataFrame({'Product': titles, 'Price': prices, 'Rating':ratings, '# Sold':sold, 'Supplier':suppliers, 'Free Shipping': shipping})
         else:
-            df = DataFrame({'Product': titles, 'Price': prices, 'Rating':ratings, '# Sold':sold, 'Supplier':suppliers})
+            df = DataFrame({'Product': titles, 'Price': prices, 'Rating':ratings, '# Sold':sold, 'Supplier':suppliers})     #if 'free shipping' is not checked, the data will not be included in the .csv
         df.index += 1
-        df.to_csv('{}.csv'.format(search), index=True)
-
-    @classmethod
-    def download_csv(cls, filename):
-        response = HttpResponse(content_type='application/force-download') # mimetype is replaced by content_type for django 1.7
-        response['Content-Disposition'] = 'attachment; filename={}.csv'.format(filename)
-        response['X-Sendfile'] = 'C://Users/User/Desktop/Portfolio'
-        return response
+        df.to_csv('C://Users/User/Desktop/Ali-Express-Web-Scraping-App/aliexpress/main/static/csv_files/{}.csv'.format(search), index=True)     #THIS WILL PATH WILL CHANGE IN DEPLOYMENT
 
     @classmethod
     def ratings_fix(cls, rating):

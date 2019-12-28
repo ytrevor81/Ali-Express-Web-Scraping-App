@@ -1,0 +1,56 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+
+<!-- Modal Popup for Sign In -->
+{% include 'includes/login.html' %}
+
+<!-- Modal Popup for Information -->
+{% include 'includes/info.html' %}
+
+<!-- Main Service and User History -->
+<div class="customrow row">
+
+  <!-- Main Service -->
+  <section class="service col-lg-8 col-md-8">
+    <div class="red title-box">
+      <h4>Gather data on the Top 50+ products from your search!</h4>
+    </div>
+
+    <!-- Web Scraping Tools -->
+    <form id="scraping-form" class="web-scraping-services" action="." method="GET">
+      <div class="product-search">
+        <input type="text" name="product" placeholder="Product name here..."/>
+      </div>
+      <div class="slidecontainer">
+        <input type="range" name="amount" min="1" max="100" value="50" class="slider" id="myRange">
+      </div>
+      <label class="checkbox-label"><input class="checkbox" type="checkbox" name="freeshipping">Check for Free Shipping </input></label>
+      <button class="scraping-button" type="submit">Collect Data</button>
+    </form>
+
+    <!-- Button Cluster -->
+    <footer class="cluster">
+      <div class="download-csv">
+        {% if filename == None %}
+          <a class="yellow" name="download" href="#">Download .CSV</a>
+        {% else %}
+          <a class="yellow" name="download" href="{% static 'csv_files/'|add:filename|add:'.csv' %}">Download .CSV</a>
+        {% endif %}
+      </div>
+      <form class="email-save" action="." method="POST">
+        <button class="orange" name="email-csv" href="#">Email .CSV</button>
+        <button class="red" name="save-data" href="#">Save Data</button>
+      </form>
+    </footer>
+  </section>
+
+  <!-- User History -->
+  <section class="history col-lg-3 col-md-3">
+    <div class="yellow title-box">
+      <h4>History</h4>
+    </div>
+  </section>
+</div>
+
+{% endblock %}
