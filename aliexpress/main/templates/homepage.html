@@ -38,9 +38,9 @@
           <a class="yellow" name="download" href="{% static 'csv_files/'|add:filename|add:'.csv' %}">Download .CSV</a>
         {% endif %}
       </div>
-      <form class="email-save" action="." method="POST">
-        <button class="orange" name="email-csv" href="#">Email .CSV</button>
-        <button class="red" name="save-data" href="#">Save Data</button>
+      <form class="email-save" action="." method="GET">
+        <button class="orange" name="email-csv" value="True">Email .CSV</button>
+        <button class="red" name="save-data" value="True">Save Data</button>
       </form>
     </footer>
   </section>

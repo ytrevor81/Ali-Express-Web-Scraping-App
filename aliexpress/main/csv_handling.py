@@ -1,10 +1,18 @@
-from django.http import HttpResponse
+from django.core.mail import EmailMessage
 from pandas import DataFrame
-from django.views.static import serve
+from .models import *
 
 
 class CSV_Handling(object):
     '''All functionality dealing with .csv file handling is addressed in this class'''
+
+    @classmethod
+    def boolean_convert(cls, get_request):
+        if get_request == "True":
+            get_request = True
+        else:
+            get_request = False
+        return get_request
 
     @classmethod
     def convert_to_csv(cls, search, checked, titles, nf_prices, rating, nf_sold, suppliers, nf_shipping):
@@ -35,3 +43,24 @@ class CSV_Handling(object):
             return ratings
         else:
             return rating
+
+    @classmethod
+    def email_csv_file(cls, filename, user_email):
+        body = "From your '{}' product search on (date)".format(filename)
+        message = EmailMessage("AliExpress Webscraper Date .csv", body ,"aliexpressscrapingapp@gmail.com",["{}".format(user_email)])
+        message.attach_file('C://Users/User/desktop/ali-express-web-scraping-app/aliexpress/main/static/csv_files/{}.csv'.format(filename))
+        message.send()
+
+    @classmethod
+    def csv_to_db(cls, filename, username):
+        ###CSV extraction
+
+        CSV_Handling.save_to_db(filename, username, products, prices, ratings, sold, shipping)
+
+    @classmethod
+    def save_to_db(cls, filename, username, products, prices, ratings, sold, shipping):
+        if shipping != None:
+            submission = AliSubmission(User=username, Product=products, Price=prices, Rating=ratings, Sold=sold, Shipping=shipping, Search=filename)
+        else:
+            submission = AliSubmission(User=username, Product=products, Price=prices, Rating=ratings, Sold=sold, Search=filename)
+        submission.save()
