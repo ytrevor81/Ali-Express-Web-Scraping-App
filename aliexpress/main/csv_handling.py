@@ -26,9 +26,9 @@ class CSV_Handling(object):
         ratings = CSV_Handling.ratings_fix(rating)
 
         if checked != None:     #pandas will convert these lists into a usable table
-            df = DataFrame({'Product': titles, 'Price': prices, 'Rating':ratings, '# Sold':sold, 'Supplier':suppliers, 'Free Shipping': shipping})
+            df = DataFrame({'Product': titles, 'Price': prices, 'Rating':ratings, 'Sold':sold, 'Supplier':suppliers, 'Free_Shipping': shipping})
         else:
-            df = DataFrame({'Product': titles, 'Price': prices, 'Rating':ratings, '# Sold':sold, 'Supplier':suppliers})     #if 'free shipping' is not checked, the data will not be included in the .csv
+            df = DataFrame({'Product': titles, 'Price': prices, 'Rating':ratings, 'Sold':sold, 'Supplier':suppliers})     #if 'free shipping' is not checked, the data will not be included in the .csv
         df.index += 1
         df.to_csv('C://Users/User/Desktop/Ali-Express-Web-Scraping-App/aliexpress/main/static/csv_files/{}.csv'.format(search), index=True)     #THIS WILL PATH WILL CHANGE IN DEPLOYMENT
 
@@ -53,14 +53,26 @@ class CSV_Handling(object):
 
     @classmethod
     def csv_to_db(cls, filename, username):
-        ###CSV extraction
+        data = pandas.read_csv('C://Users/User/Desktop/Ali-Express-Web-Scraping-App/aliexpress/main/static/csv_files/tobacco.csv')
+        prices = data.Price.tolist()
+        ratings = data.Rating.tolist()
+        suppliers = data.Supplier.tolist()
+        shipping = data.Free_Shipping.tolist() #catch error is not list
 
-        CSV_Handling.save_to_db(filename, username, products, prices, ratings, sold, shipping)
+        integers = data.Sold.tolist()
+        sold = [str(x) for x in integers]
+
+        encoding_mess = data.Product.tolist()
+        bstrings = [x.encode('utf-8') for x in encoding_mess]
+        unfinshed_str = [str(x) for x in bstrings]
+        products = [x.replace("b", '').replace("'", '') for x in unfinshed_str]
+
+        CSV_Handling.save_to_db(filename, username, products, prices, ratings, sold, suppliers, shipping)
 
     @classmethod
-    def save_to_db(cls, filename, username, products, prices, ratings, sold, shipping):
+    def save_to_db(cls, filename, username, products, prices, ratings, sold, suppliers, shipping):
         if shipping != None:
-            submission = AliSubmission(User=username, Product=products, Price=prices, Rating=ratings, Sold=sold, Shipping=shipping, Search=filename)
+            submission = AliSubmission(User=username, Products=products, Prices=prices, Ratings=ratings, Sold=sold, Suppliers=suppliers, Shipping=shipping, Search=filename)
         else:
-            submission = AliSubmission(User=username, Product=products, Price=prices, Rating=ratings, Sold=sold, Search=filename)
+            submission = AliSubmission(User=username, Products=products, Prices=prices, Ratings=ratings, Sold=sold, Suppliers=suppliers, Search=filename)
         submission.save()

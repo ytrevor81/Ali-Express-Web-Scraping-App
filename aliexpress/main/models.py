@@ -2,10 +2,11 @@ from django.db import models
 
 class AliSubmission(models.Model):
     User = models.CharField(max_length=250, default="Ghost user...")
-    Product = models.TextField()
-    Price = models.TextField()
-    Rating = models.TextField()
+    Products = models.TextField()
+    Prices = models.TextField()
+    Ratings = models.TextField()
     Sold = models.TextField()
+    Suppliers = models.TextField(default="N/A")
     Shipping = models.TextField(blank=True)
     Search = models.CharField(max_length=250, default="BLANK")
     Date = models.DateTimeField(auto_now_add=True)
