@@ -1,6 +1,5 @@
+import pandas
 from django.core.mail import EmailMessage
-from pandas import DataFrame
-from .models import *
 
 
 class CSV_Handling(object):
@@ -26,9 +25,9 @@ class CSV_Handling(object):
         ratings = CSV_Handling.ratings_fix(rating)
 
         if checked != None:     #pandas will convert these lists into a usable table
-            df = DataFrame({'Product': titles, 'Price': prices, 'Rating':ratings, 'Sold':sold, 'Supplier':suppliers, 'Free_Shipping': shipping})
+            df = pandas.DataFrame({'Product': titles, 'Price': prices, 'Rating':ratings, 'Sold':sold, 'Supplier':suppliers, 'Free_Shipping': shipping})
         else:
-            df = DataFrame({'Product': titles, 'Price': prices, 'Rating':ratings, 'Sold':sold, 'Supplier':suppliers})     #if 'free shipping' is not checked, the data will not be included in the .csv
+            df = pandas.DataFrame({'Product': titles, 'Price': prices, 'Rating':ratings, 'Sold':sold, 'Supplier':suppliers})     #if 'free shipping' is not checked, the data will not be included in the .csv
         df.index += 1
         df.to_csv('C://Users/User/Desktop/Ali-Express-Web-Scraping-App/aliexpress/main/static/csv_files/{}.csv'.format(search), index=True)     #THIS WILL PATH WILL CHANGE IN DEPLOYMENT
 
@@ -67,12 +66,8 @@ class CSV_Handling(object):
         unfinshed_str = [str(x) for x in bstrings]
         products = [x.replace("b", '').replace("'", '') for x in unfinshed_str]
 
-        CSV_Handling.save_to_db(filename, username, products, prices, ratings, sold, suppliers, shipping)
+        DB_Handling.save_to_db(filename, username, products, prices, ratings, sold, suppliers, shipping)
 
     @classmethod
-    def save_to_db(cls, filename, username, products, prices, ratings, sold, suppliers, shipping):
-        if shipping != None:
-            submission = AliSubmission(User=username, Products=products, Prices=prices, Ratings=ratings, Sold=sold, Suppliers=suppliers, Shipping=shipping, Search=filename)
-        else:
-            submission = AliSubmission(User=username, Products=products, Prices=prices, Ratings=ratings, Sold=sold, Suppliers=suppliers, Search=filename)
-        submission.save()
+    def db_to_csv(cls):
+        pass

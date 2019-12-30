@@ -254,8 +254,28 @@ strong { color: #FF4747; font-weight: normal; }
 .cluster button:active { background-color: #333; transition: 0.2s}
 
 
- /*--- User History --- */
- .history { border-color: #FFCD03; padding: 0; }
+/*--- User History --- */
+.history { border-color: #FFCD03; padding: 0; }
+.auth-margin { margin-bottom: 0; }
+.history-signin {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 86%;
+      background-color: rgba(0,0,0,0.5);
+    }
+.history-signin h5 { margin-top: -25px; }
+.history-signin h5 a:hover { color: #FF4747; text-decoration: underline; cursor: pointer; }
+
+.query-box { background-color: #333; border-bottom: 1px solid #FFCD03; }
+.query-box .search-date {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 10px;
+}
+.query-box .query-options { padding-top: 5px; padding-bottom: 11px; }
+.query-box .query-options button { border: none; color: #fff; }
+.query-box .query-options .download-history { margin-right: 50px; }
 
 
 /* --- Footer --- */

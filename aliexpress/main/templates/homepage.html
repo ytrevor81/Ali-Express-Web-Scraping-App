@@ -47,9 +47,25 @@
 
   <!-- User History -->
   <section class="history col-lg-3 col-md-3">
-    <div class="yellow title-box">
+    <div class="yellow auth-margin title-box">
       <h4>History</h4>
     </div>
+    {% if user.is_authenticated %}
+      <!-- For loop w/ user's queries **max 5 -->
+      <div class="query-box">
+        <div class="search-date">
+          <h4>Search</h4><h4><i>Datestamp</i></h4>
+        </div>
+        <form class="query-options" action='.' method="GET">
+          <button class="orange download-history" name="download-query" value="username-search-datestamp">Download</button>
+          <button class="red" name="delete-query" value="username-search-datestamp">Delete</button>
+        </form>
+      </div>
+    {% else %}
+      <div class="history-signin">
+        <h5><i><a data-toggle="modal" data-target=".login"><strong>Sign In</strong></a> to access your saved queries</i></h5>
+      </div>
+    {% endif %}
   </section>
 </div>
 
