@@ -1,6 +1,5 @@
 from .models import *
 
-
 class DB_Handling(object):
     '''All functionality directly related to the database is located here'''
 
@@ -14,9 +13,19 @@ class DB_Handling(object):
         submission.save()
 
     @classmethod
-    def history_queries(cls, username):
-        pass
+    def db_to_csvlist(cls, username, id):
+        query = AliSubmission.objects.filter(User=username, id=id)
+        for prop in query:
+            search = prop.Search
+            products = [prop.Products]
+            prices = [prop.Prices]
+            ratings = [prop.Ratings]
+            sold = [prop.Sold]
+            suppliers = [prop.Suppliers]
+        return [search, products, prices, ratings, sold, suppliers]
 
     @classmethod
-    def csv_download_query(cls, username):
-        pass
+    def delete_from_db(cls, username, id):
+        query = AliSubmission.objects.filter(User=username, id=id)
+        query.delete()
+        print('Deleted')

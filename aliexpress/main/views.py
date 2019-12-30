@@ -2,13 +2,14 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .data_parser import *
 from .csv_handling import *
+from .db_handling import *
 from .models import *
 from .forms import RegisterForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 
 
-csvfilename = ['tobacco']
+csvfilename = []
 
 def homepage(request):
     '''Variety of functions are occuring here: Login, web scraping, and when the user is
@@ -17,6 +18,8 @@ def homepage(request):
     #All GET requests from the homepage
     search = request.GET.get('product')
     checked = request.GET.get('freeshipping')
+    history_download = request.GET.get('download-query')
+    history_delete = request.GET.get('delete-query')
     email_csv = CSV_Handling.boolean_convert(request.GET.get('email-csv'))
     save_csv = CSV_Handling.boolean_convert(request.GET.get('save-data'))
 
@@ -65,6 +68,7 @@ def homepage(request):
         print('email_csv = {}'.format(email_csv))
 
     #Save CSV Function
+    print(filename)
     if save_csv == True:
         if request.user.is_authenticated:
             username = request.user.username
@@ -77,9 +81,23 @@ def homepage(request):
             print("SIGN IN OR REGISTER")
     else:
         print("save_csv = {}".format(save_csv))
-        
 
-    return render(request, "homepage.html", {"form": form, "filename": filename})
+    #User History Functionality: Make csv from history and Delete
+    if request.user.is_authenticated:
+        username = request.user.username
+        queries = AliSubmission.objects.filter(User=username)
+        if history_download != None:
+            CSV_Handling.history_to_csv(username, history_download)
+        else:
+            print('history download = None')
+        if history_delete != None:
+            DB_Handling.delete_from_db(username, history_delete)
+        else:
+            print('history delete = None')
+    else:
+        queries = None
+
+    return render(request, "homepage.html", {"form": form, "filename": filename, "queries": queries})
 
 def register(request):
     '''Register new users'''
