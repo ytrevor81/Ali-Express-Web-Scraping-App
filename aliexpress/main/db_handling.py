@@ -6,7 +6,7 @@ class DB_Handling(object):
     @classmethod
     def save_to_db(cls, filename, username, products, prices, ratings, sold, suppliers, shipping):
         '''Takes in the lists of csv columns from CSV_Handling and submits the data to the database'''
-        if shipping == None:
+        if shipping == False:
             submission = AliSubmission(User=username, Products=products, Prices=prices, Ratings=ratings, Sold=sold, Suppliers=suppliers, Search=filename)
         else:
             submission = AliSubmission(User=username, Products=products, Prices=prices, Ratings=ratings, Sold=sold, Suppliers=suppliers, Shipping=shipping, Search=filename)
@@ -17,11 +17,11 @@ class DB_Handling(object):
         query = AliSubmission.objects.filter(User=username, id=id)
         for prop in query:
             search = prop.Search
-            products = [prop.Products]
-            prices = [prop.Prices]
-            ratings = [prop.Ratings]
-            sold = [prop.Sold]
-            suppliers = [prop.Suppliers]
+            products = prop.Products
+            prices = prop.Prices
+            ratings = prop.Ratings
+            sold = prop.Sold
+            suppliers = prop.Suppliers
         return [search, products, prices, ratings, sold, suppliers]
 
     @classmethod

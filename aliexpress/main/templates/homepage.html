@@ -23,7 +23,10 @@
         <input type="text" name="product" placeholder="Product name here..."/>
       </div>
       <div class="slidecontainer">
-        <input type="range" name="amount" min="1" max="100" value="50" class="slider" id="myRange">
+        <input type="range" name="amount" min="1" max="60" value="50" class="slider" id="myRange">
+        <div class="slider-info">
+          <p>I want to look for <span id="slider-amount"></span> Products</p>
+        </div>
       </div>
       <label class="checkbox-label"><input class="checkbox" type="checkbox" name="freeshipping">Check for Free Shipping </input></label>
       <button class="scraping-button" type="submit">Collect Data</button>
@@ -38,10 +41,17 @@
           <a class="yellow" name="download" href="{% static 'csv_files/'|add:filename|add:'.csv' %}">Download .CSV</a>
         {% endif %}
       </div>
-      <form class="email-save" action="." method="GET">
-        <button class="orange" name="email-csv" value="True">Email .CSV</button>
-        <button class="red" name="save-data" value="True">Save Data</button>
-      </form>
+      {% if user.is_authenticated %}
+        <form class="email-save" action="." method="GET">
+          <button class="orange" name="email-csv" value="True">Email .CSV</button>
+          <button class="red" name="save-data" value="True">Save Data</button>
+        </form>
+      {% else %}
+        <div class="email-save">
+          <button class="orange" data-toggle="modal" data-target=".login">Email .CSV</button>
+          <button class="red" data-toggle="modal" data-target=".login">Save Data</button>
+        </div>
+      {% endif %}
     </footer>
   </section>
 
@@ -60,7 +70,7 @@
               <h4>{{ query.Search }}</h4><h4><i>{{ query.Date }}</i></h4>
             </div>
             <form class="query-options" action='.' method="GET">
-              <button class="orange download-history" name="download-query" value="{{query.id}}">Download</button>
+              <button class="orange download-history" name="download-query" value="{{query.Search}}---{{query.id}}">Make CSV</button>
               <button class="red" name="delete-query" value="{{query.id}}">Delete</button>
             </form>
           </div>

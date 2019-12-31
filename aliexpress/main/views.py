@@ -10,6 +10,7 @@ from django.contrib.auth.forms import AuthenticationForm
 
 
 csvfilename = []
+checked_history = []
 
 def homepage(request):
     '''Variety of functions are occuring here: Login, web scraping, and when the user is
@@ -17,6 +18,7 @@ def homepage(request):
 
     #All GET requests from the homepage
     search = request.GET.get('product')
+    amount_string = request.GET.get('amount')
     checked = request.GET.get('freeshipping')
     history_download = request.GET.get('download-query')
     history_delete = request.GET.get('delete-query')
@@ -40,12 +42,22 @@ def homepage(request):
     form = AuthenticationForm
 
     #Web Scraping function---no need for user verification
+    if amount_string != None:
+        amount = int(amount_string)
+    else:
+        print('amount = None')
+
     if search != None:
-        PageSourceParsing.page_source(search, checked)
+        PageSourceParsing.page_source(search, amount, checked)
         csvfilename.append(search)
         print("Scraping Complete")
     else:
         print('Message for user')
+
+    if checked != False:
+        checked_history.append(checked)
+    else:
+        checked_history.append(False)
 
     #Stores the most recent search, so the user can download or email the .csv file.
     if len(csvfilename) == 0:
@@ -75,7 +87,7 @@ def homepage(request):
             if filename == None:
                 print('Do a search or click a past search')
             else:
-                CSV_Handling.csv_to_db(filename, username)
+                CSV_Handling.csv_to_db(filename, username, checked_history[-1])
                 print("Data saved!")
         else:
             print("SIGN IN OR REGISTER")
@@ -87,7 +99,11 @@ def homepage(request):
         username = request.user.username
         queries = AliSubmission.objects.filter(User=username)
         if history_download != None:
-            CSV_Handling.history_to_csv(username, history_download)
+            string_tuple = history_download.partition("---")
+            filename = string_tuple[0]
+            id = string_tuple[2]
+            CSV_Handling.history_to_csv(username, id)
+            csvfilename.append(filename)
         else:
             print('history download = None')
         if history_delete != None:

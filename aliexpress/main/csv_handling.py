@@ -1,4 +1,5 @@
 import pandas
+import numpy as np
 from .db_handling import *
 from django.core.mail import EmailMessage
 
@@ -79,12 +80,11 @@ class CSV_Handling(object):
         the .csv file will have an extra column for 'Free Shipping' information'''
         csv_list = DB_Handling.db_to_csvlist(username, id)
         search = csv_list[0]
-        products = csv_list[1]
-        prices = csv_list[2]
-        ratings = csv_list[3]
-        sold = csv_list[4]
-        suppliers = csv_list[5]
-
+        products = eval(csv_list[1])
+        prices = eval(csv_list[2])
+        ratings = eval(csv_list[3])
+        sold = eval(csv_list[4])
+        suppliers = eval(csv_list[5])
         df = pandas.DataFrame({'Product': products, 'Price': prices, 'Rating':ratings, 'Sold':sold, 'Supplier':suppliers})
         df.index += 1
         df.to_csv('C://Users/User/Desktop/Ali-Express-Web-Scraping-App/aliexpress/main/static/csv_files/{}.csv'.format(search), index=True)     #THIS WILL PATH WILL CHANGE IN DEPLOYMENT

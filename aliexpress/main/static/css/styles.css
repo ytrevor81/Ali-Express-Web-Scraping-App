@@ -152,6 +152,9 @@ strong { color: #FF4747; font-weight: normal; }
   background: #FFCD03;
   cursor: pointer; /* Cursor on hover */
 }
+.slider-info { display: flex; justify-content: center; }
+.slider-info p { margin: 5px; font-size: 18px; color: #fff; }
+.slider-info p span { color: #FFCD03; }
 
 .checkbox-label { font-size: 23px; color: #fff; }
 .checkbox {
@@ -234,8 +237,8 @@ strong { color: #FF4747; font-weight: normal; }
   padding:  20px;
   cursor: pointer;
 }
-.download-csv a:hover { background-color: #333; transition: 0.2s; text-decoration: none; }
-.download-csv a:active { background-color: #333; transition: 0.2s; text-decoration: none; }
+.download-csv a:hover { background-color: #333; transition: 0.2s; text-decoration: none; border: 1px solid #fff; }
+.download-csv a:active { background-color: #333; transition: 0.2s; text-decoration: none; border: 1px solid #fff; }
 .email-save {
   display: flex;
   width: 66.63%;
@@ -250,8 +253,8 @@ strong { color: #FF4747; font-weight: normal; }
   width: 50%;
   cursor: pointer;
 }
-.cluster button:hover { background-color: #333; transition: 0.2s; }
-.cluster button:active { background-color: #333; transition: 0.2s}
+.cluster button:hover { background-color: #333; transition: 0.2s; border: 1px solid #fff; }
+.cluster button:active { background-color: #333; transition: 0.2s; border: 1px solid #fff; }
 
 
 /*--- User History --- */
@@ -288,8 +291,13 @@ strong { color: #FF4747; font-weight: normal; }
 
  @media screen and (max-width: 1500px) {
    h1 { font-size: 55px; }
-   h4, h5 { font-size: 20px; }
+   h4, h5 { font-size: 18px; }
 
-   .customrow { margin-right: -15px; margin-left: -15px; }
-   .service { flex: 0 0 66.666667%; max-width: 66.666667%; }
+   .customnav { padding: 1rem 4rem; }
+   .product-search input { width: 102%; font-size: 22px; }
+   .customrow { margin-right: 5%; margin-left: 5%; justify-content: center; }
+   .service { flex: 0 0 66.666667%; max-width: 66.666667%; margin-right: 20px; }
+
+   .cluster button { font-size: 18px; }
+   .download-csv a { font-size: 18px; }
  }
