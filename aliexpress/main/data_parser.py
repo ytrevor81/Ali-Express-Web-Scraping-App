@@ -10,7 +10,7 @@ class PageSourceParsing(object):
     parse the necessary data from the html, and close the browser'''
 
     @classmethod
-    def page_source(cls, search, checked):
+    def page_source(cls, search, amount, checked):
         '''This will perform the BeautifulSoup data parsing, close the robot-controlled browser, and be called in views.py'''
 
         driver = BrowserControl.prepare_page_source(search)     #will begin the webscraping process by opening up the robot-controlled browser to the correct page
@@ -26,11 +26,11 @@ class PageSourceParsing(object):
         htmlratings = soup.find_all('span', {'class':"rating-value"})
         htmlsold = soup.find_all('a', {'class':"sale-value-link"})
 
-        titles = [x.get_text() for x in htmltitles]     #extracts the text within each element
-        nf_prices = [x.get_text() for x in htmlprices]      #'nf' for 'not finshed'. These 'nf' lists will be processed in the convert_to_csv function below
-        ratings = [x.get_text() for x in htmlratings]
-        nf_sold = [x.get_text() for x in htmlsold]
-        suppliers = [x.get_text() for x in htmlsupplier]
-        nf_shipping = [x.get_text() for x in htmlshipping]
+        titles = [x.get_text() for x in htmltitles][:amount]     #extracts the text within each element
+        nf_prices = [x.get_text() for x in htmlprices][:amount]       #'nf' for 'not finshed'. These 'nf' lists will be processed in the convert_to_csv function below
+        ratings = [x.get_text() for x in htmlratings][:amount]
+        nf_sold = [x.get_text() for x in htmlsold][:amount]
+        suppliers = [x.get_text() for x in htmlsupplier][:amount]
+        nf_shipping = [x.get_text() for x in htmlshipping][:amount]
 
-        CSV_Handling.convert_to_csv(search, checked, titles, nf_prices, ratings, nf_sold, suppliers, nf_shipping) #will convert data into a .csv file
+        CSV_Handling.convert_to_csv(search, amount, checked, titles, nf_prices, ratings, nf_sold, suppliers, nf_shipping) #will convert data into a .csv file

@@ -15,15 +15,16 @@ class CSV_Handling(object):
         return get_request
 
     @classmethod
-    def convert_to_csv(cls, search, checked, titles, nf_prices, rating, nf_sold, suppliers, nf_shipping):
+    def convert_to_csv(cls, search, amount, checked, titles, nf_prices, rating, nf_sold, suppliers, nf_shipping):
         '''Converts all the list data into a .csv file, and if the checked parameter doesn't equal None,
         the .csv file will have an extra column for 'Free Shipping' information'''
 
         prices = [i.replace('US $', '') for i in nf_prices]     #these 3 list comprehensions will process the data from each 'not finished' list into correct format
-        sold = [i.replace(' Sold', '') for i in nf_sold]
+        almost_sold = [i.replace(' Sold', '') for i in nf_sold]
         shipping = ["XXX" if i == "Free Shipping" else '-' for i in nf_shipping]
-        print(len(titles), len(prices), len(rating), len(sold), len(suppliers), len(shipping))
-        ratings = CSV_Handling.ratings_fix(rating)
+        print(len(titles), len(prices), len(rating), len(almost_sold), len(suppliers), len(shipping))
+        ratings = CSV_Handling.missing_elements_fix(amount, rating)
+        sold = CSV_Handling.missing_elements_fix(amount, almost_sold)
 
         if checked != None:     #pandas will convert these lists into a usable table
             df = pandas.DataFrame({'Product': titles, 'Price': prices, 'Rating':ratings, 'Sold':sold, 'Supplier':suppliers, 'Free_Shipping': shipping})
@@ -33,16 +34,16 @@ class CSV_Handling(object):
         df.to_csv('C://Users/User/Desktop/Ali-Express-Web-Scraping-App/aliexpress/main/static/csv_files/{}.csv'.format(search), index=True)     #THIS WILL PATH WILL CHANGE IN DEPLOYMENT
 
     @classmethod
-    def ratings_fix(cls, rating):
+    def missing_elements_fix(cls, amount, string_list):
         '''TEMPORARY FIX -- Appends the ratings list until the length reaches 60 elements'''
-        if len(rating) != 60:
+        if len(string_list) != amount:
             print('Beginning while loop')
-            while len(rating) != 60:
-                rating.append('-')
-            ratings = rating
-            return ratings
+            while len(string_list) != amount:
+                string_list.append('-')
+            corrected_list = string_list
+            return corrected_list
         else:
-            return rating
+            return string_list
 
     @classmethod
     def email_csv_file(cls, filename, user_email):
@@ -52,12 +53,15 @@ class CSV_Handling(object):
         message.send()
 
     @classmethod
-    def csv_to_db(cls, filename, username):
+    def csv_to_db(cls, filename, username, checked):
         data = pandas.read_csv('C://Users/User/Desktop/Ali-Express-Web-Scraping-App/aliexpress/main/static/csv_files/{}.csv'.format(filename))
         prices = data.Price.tolist()
         ratings = data.Rating.tolist()
         suppliers = data.Supplier.tolist()
-        shipping = data.Free_Shipping.tolist() #catch error is not list
+        if checked == True:
+            shipping = data.Free_Shipping.tolist()
+        else:
+            shipping = False
 
         integers = data.Sold.tolist()
         sold = [str(x) for x in integers]
