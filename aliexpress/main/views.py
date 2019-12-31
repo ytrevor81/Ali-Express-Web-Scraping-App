@@ -47,12 +47,14 @@ def homepage(request):
     else:
         print('amount = None')
 
-    if search != None:
+    if search == None:
+        print('Message for user')
+    elif search == "":
+        print('Message for user')
+    else:
         PageSourceParsing.page_source(search, amount, checked)
         csvfilename.append(search)
         print("Scraping Complete")
-    else:
-        print('Message for user')
 
     if checked != False:
         checked_history.append(checked)

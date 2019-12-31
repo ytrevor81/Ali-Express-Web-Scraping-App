@@ -8,6 +8,9 @@
 <!-- Modal Popup for Information -->
 {% include 'includes/info.html' %}
 
+<!-- Modal Popup for Information -->
+{% include 'includes/downloadcsv.html' %}
+
 <!-- Main Service and User History -->
 <div class="customrow row">
 
@@ -36,16 +39,23 @@
     <footer class="cluster">
       <div class="download-csv">
         {% if filename == None %}
-          <a class="yellow" name="download" href="#">Download .CSV</a>
+          <a class="yellow" data-toggle="modal" data-target=".download">Download .CSV</a>
         {% else %}
           <a class="yellow" name="download" href="{% static 'csv_files/'|add:filename|add:'.csv' %}">Download .CSV</a>
         {% endif %}
       </div>
       {% if user.is_authenticated %}
-        <form class="email-save" action="." method="GET">
-          <button class="orange" name="email-csv" value="True">Email .CSV</button>
-          <button class="red" name="save-data" value="True">Save Data</button>
-        </form>
+        {% if filename == None %}
+          <form class="email-save" action="." method="GET">
+            <button class="orange" data-toggle="modal" data-target=".download">Email .CSV</button>
+            <button class="red" data-toggle="modal" data-target=".download">Save Data</button>
+          </form>
+        {% else %}
+          <form class="email-save" action="." method="GET">
+            <button class="orange" name="email-csv" value="True">Email .CSV</button>
+            <button class="red" name="save-data" value="True">Save Data</button>
+          </form>
+        {% endif %}
       {% else %}
         <div class="email-save">
           <button class="orange" data-toggle="modal" data-target=".login">Email .CSV</button>
