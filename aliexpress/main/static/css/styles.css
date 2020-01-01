@@ -50,8 +50,53 @@ strong { color: #FF4747; font-weight: normal; }
     border: none;
     border-bottom: 2px solid #FF4747;
     color: #fff;
+    margin-bottom: 25px;
   }
-.login-footer { border: none; }
+.login-footer { border: none; display: block; padding: 0; }
+.login-button {
+      border: 2px solid #FFCD03;
+      color: #fff;
+      margin-bottom: 25px;
+      width: 50%;
+      height: 40px;
+      background-color: #333;
+      margin-top: -15px;
+      cursor: pointer;
+    }
+.login-button:hover {
+  color: #fff;
+  background-color: inherit;
+  font-weight: bold;
+  transition: 0.2s;
+  border-color: #FF4747;
+ }
+
+/* --- Downloadcsv Popup Modal --- */
+.downloadcontent {
+  margin-top: 100px;
+  border: 2px solid #FFCD03;
+  background-color: rgba(0,0,0,0.5);
+  font-size: 18px;
+  color: #FFCD03; }
+.downloadheader { border: none; }
+.downloadheader button span { color: #fff; }
+.downloadfooter { border: none; display: block; }
+.downloadfooter button {
+  width: 50%;
+  height: 45px;
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #FFCD03;
+  cursor: pointer;
+  }
+.downloadfooter button:hover {
+  color: #fff;
+  background-color: inherit;
+  font-weight: bold;
+  transition: 0.2s;
+  border-color: #FF4747;
+ }
+
 
 /* --- Register --- */
 .registerrow {
@@ -227,10 +272,10 @@ strong { color: #FF4747; font-weight: normal; }
     display: flex;
     width: 33.33%;
     height: 70px;
+    color: #fff;
   }
 .download-csv a {
   border: none;
-  color: #fff;
   font-size: 20px;
   height: 100%;
   width: 100%;
