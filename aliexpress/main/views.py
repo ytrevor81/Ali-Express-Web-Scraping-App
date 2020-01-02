@@ -99,7 +99,8 @@ def homepage(request):
     #User History Functionality: Make csv from history and Delete
     if request.user.is_authenticated:
         username = request.user.username
-        queries = AliSubmission.objects.filter(User=username)
+        queries = AliSubmission.objects.filter(User=username)[:6]
+        print(len(queries))
         if history_download != None:
             string_tuple = history_download.partition("---")
             filename = string_tuple[0]
@@ -130,8 +131,9 @@ def register(request):
             for msg in form.error_messages:
                 print(form.error_messages[msg])
 
-    form = RegisterForm
-    return render(request, "register.html", {"form": form})
+    login_form = AuthenticationForm
+    register_form = RegisterForm
+    return render(request, "register.html", {"register_form": register_form, "form": login_form})
 
 def logout_request(request):
     logout(request)

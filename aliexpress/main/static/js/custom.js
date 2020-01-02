@@ -1,3 +1,5 @@
+//Slider
+
 var slider = document.getElementById('myRange');
 var output = document.getElementById('slider-amount');
 

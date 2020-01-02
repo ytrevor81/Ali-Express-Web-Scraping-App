@@ -35,7 +35,7 @@ strong { color: #FF4747; font-weight: normal; }
 
 /* --- Modals --- */
 .login-dialog { margin-top: 5%; max-width: 600px; }
-.login-content { background-color: rgba(0,0,0,0.4); border: 2px solid #FF4747; }
+.login-content { background-color: rgba(0,0,0,0.7); border: 2px solid #FF4747; }
 .login-header { border: none; }
 .login-title { margin-left: 40%; font-size: 27px; }
 .login-close { color: #fff; }
@@ -53,6 +53,14 @@ strong { color: #FF4747; font-weight: normal; }
     margin-bottom: 25px;
   }
 .login-footer { border: none; display: block; padding: 0; }
+.login-footer div {
+    color: #fff;
+    font-size: 18px;
+    padding: 5px 15px 5px 15px;
+    border: 1px solid #fff;
+    width: 50%;
+    display: inline;
+  }
 .login-button {
       border: 2px solid #FFCD03;
       color: #fff;
@@ -60,7 +68,7 @@ strong { color: #FF4747; font-weight: normal; }
       width: 50%;
       height: 40px;
       background-color: #333;
-      margin-top: -15px;
+      margin-top: 35px;
       cursor: pointer;
     }
 .login-button:hover {
@@ -75,7 +83,7 @@ strong { color: #FF4747; font-weight: normal; }
 .downloadcontent {
   margin-top: 100px;
   border: 2px solid #FFCD03;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.7);
   font-size: 18px;
   color: #FFCD03; }
 .downloadheader { border: none; }
@@ -106,6 +114,7 @@ strong { color: #FF4747; font-weight: normal; }
     justify-content: center;
   }
 .register-main { width: 85%; }
+.register-main strong { text-decoration: underline; cursor: pointer; }
 .register-container {
   font-size: 18px;
   color: #FFCD03;
@@ -141,6 +150,13 @@ strong { color: #FF4747; font-weight: normal; }
     font-size: 20px;
     cursor: pointer;
     margin-top: 20px;
+}
+.register-container .register-button:hover {
+  color: #fff;
+  background-color: rgba(0,0,0,0.7);
+  font-weight: bold;
+  transition: 0.2s;
+  border-color: #FF4747;
 }
 .registerrow h5 { font-size: 15px; }
 
@@ -258,8 +274,8 @@ strong { color: #FF4747; font-weight: normal; }
     font-size: 20px;
     cursor: pointer;
   }
-.scraping-button:hover { background-color: #333; transition: 0.2s; border-color: #fff; }
-.scraping-button:active { background-color: #333; transition: 0.2s; border-color: #fff; }
+.scraping-button:hover { background-color: rgba(0,0,0,0.7); transition: 0.2s; border-color: #fff; }
+.scraping-button:active { background-color: rgba(0,0,0,0.7); transition: 0.2s; border-color: #fff; }
 
 
 .cluster {
@@ -282,8 +298,8 @@ strong { color: #FF4747; font-weight: normal; }
   padding:  20px;
   cursor: pointer;
 }
-.download-csv a:hover { background-color: #333; transition: 0.2s; text-decoration: none; border: 1px solid #fff; }
-.download-csv a:active { background-color: #333; transition: 0.2s; text-decoration: none; border: 1px solid #fff; }
+.download-csv a:hover { background-color: rgba(0,0,0,0.7); transition: 0.2s; text-decoration: none; border: 1px solid #fff; }
+.download-csv a:active { background-color: rgba(0,0,0,0.7); transition: 0.2s; text-decoration: none; border: 1px solid #fff; }
 .email-save {
   display: flex;
   width: 66.63%;
@@ -298,8 +314,8 @@ strong { color: #FF4747; font-weight: normal; }
   width: 50%;
   cursor: pointer;
 }
-.cluster button:hover { background-color: #333; transition: 0.2s; border: 1px solid #fff; }
-.cluster button:active { background-color: #333; transition: 0.2s; border: 1px solid #fff; }
+.cluster button:hover { background-color: rgba(0,0,0,0.7); transition: 0.2s; border: 1px solid #fff; }
+.cluster button:active { background-color: rgba(0,0,0,0.7); transition: 0.2s; border: 1px solid #fff; }
 
 
 /*--- User History --- */
@@ -315,15 +331,20 @@ strong { color: #FF4747; font-weight: normal; }
 .history-signin h5 { margin-top: -25px; }
 .history-signin h5 a:hover { color: #FF4747; text-decoration: underline; cursor: pointer; }
 
-.query-box { background-color: #333; border-bottom: 1px solid #FFCD03; }
-.query-box .search-date {
+.query-box {
+    background-color: rgba(0,0,0,0.7);
+    border-bottom: 1px solid #333;
     display: flex;
-    justify-content: space-evenly;
-    padding-top: 10px;
+    justify-content: space-between;
+  }
+.query-box .search-date {
+    padding: 12px 0px 11px 8px;
 }
-.query-box .query-options { padding-top: 5px; padding-bottom: 11px; }
-.query-box .query-options button { border: none; color: #fff; }
-.query-box .query-options .download-history { margin-right: 50px; }
+.query-box .search-date .user-search { font-size: 16px; }
+.query-box .search-date .user-search-date { font-size: 12px; }
+.query-box .query-options { display: flex; flex-direction: column; width: 50%; }
+.query-box .query-options button { border: none; color: #fff; height: 50%; cursor: pointer; }
+.query-box .query-options button:hover { border: 1px solid #fff; background-color: inherit; }
 
 
 /* --- Footer --- */

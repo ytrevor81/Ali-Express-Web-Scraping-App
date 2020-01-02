@@ -8,8 +8,11 @@
 <!-- Modal Popup for Information -->
 {% include 'includes/info.html' %}
 
-<!-- Modal Popup for Information -->
+<!-- Modal Popup for Download Error -->
 {% include 'includes/downloadcsv.html' %}
+
+<!-- Modal Popup for Collect Data Info -->
+{% include 'includes/collectdata.html' %}
 
 <!-- Main Service and User History -->
 <div class="customrow row">
@@ -32,7 +35,7 @@
         </div>
       </div>
       <label class="checkbox-label"><input class="checkbox" type="checkbox" name="freeshipping">Check for Free Shipping </input></label>
-      <button class="scraping-button" type="submit">Collect Data</button>
+      <button class="scraping-button" type="submit" data-toggle="modal" data-target=".collectdata">Collect Data</button>
     </form>
 
     <!-- Button Cluster -->
@@ -77,10 +80,11 @@
         {% for query in queries %}
           <div class="query-box">
             <div class="search-date">
-              <h4>{{ query.Search }}</h4><h4><i>{{ query.Date }}</i></h4>
+              <h4 class="user-search">{{ query.Search }}</h4>
+              <h4 class="user-search-date"><i>{{ query.Date }}</i></h4>
             </div>
             <form class="query-options" action='.' method="GET">
-              <button class="orange download-history" name="download-query" value="{{query.Search}}---{{query.id}}">Make CSV</button>
+              <button class="orange" name="download-query" value="{{query.Search}}---{{query.id}}">Make CSV</button>
               <button class="red" name="delete-query" value="{{query.id}}">Delete</button>
             </form>
           </div>
