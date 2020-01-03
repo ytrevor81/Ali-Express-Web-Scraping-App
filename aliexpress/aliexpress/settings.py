@@ -122,7 +122,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+MEDIA_ROOT = 'C://Users/User/Desktop/Ali-Express-Web-Scraping-App/aliexpress/main/media'
+
 STATIC_URL = '/static/'
+MEDIA_URL = "/media/"
 
 
 EMAIL_HOST = 'smtp.gmail.com'
