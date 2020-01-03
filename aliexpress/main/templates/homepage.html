@@ -14,6 +14,17 @@
 <!-- Modal Popup for Collect Data Info -->
 {% include 'includes/collectdata.html' %}
 
+{% if email == "Sent" %}
+  <div class="email-alert alert" role="alert">
+    Email Sent!
+    <button type="button" class="email-alert-button close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{% else %}
+  <!-- Email CSV function not called -->
+{% endif %}
+
 <!-- Main Service and User History -->
 <div class="customrow row">
 
@@ -92,10 +103,11 @@
       {% endif %}
     {% else %}
       <div class="history-signin">
-        <h5><i><a data-toggle="modal" data-target=".login"><strong>Sign In</strong></a> to access your saved queries</i></h5>
+        <h5><i><a href="#" data-toggle="modal" data-target=".login"><strong>Sign In</strong></a> to access your saved queries</i></h5>
       </div>
     {% endif %}
   </section>
 </div>
+
 
 {% endblock %}

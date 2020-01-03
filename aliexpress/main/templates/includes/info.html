@@ -1,18 +1,39 @@
 <div class="info modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
+    <div class="downloadcontent modal-content">
+      <div class="login-header modal-header">
+        <h5 class="info-title modal-title">How to use this app</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+          <span class="login-close" aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <p>Modal body text goes here.</p>
+      <div class="downloadbody modal-body">
+        <ul class="info-list">
+          <li>1.    Type in a product name or category in the search bar.</li><br>
+          <li>2.    Choose how many products you want in your .csv file.</li><br>
+          <li>3.    (Optional) Check for the option to include free shipping information
+                for each product. In the .csv, 'XXX' in the "Free Shipping"
+                column represents 'True', or free shipping is an option
+                for that product; "-" represents False.</li><br>
+          <li>4.    Click 'Collect Data' to scrape Ali Express for your product
+                information. This process will extract information about each product's
+                name, price, rating, supplier, amount sold, and free
+                shipping (optional); this info will be stored in a .csv file.</li><br>
+          <li>5.    AFTER YOU SEARCH A PRODUCT: either download the .csv directly on your
+                computer (no account needed), email the .csv to your email
+                address (account needed), or save the data from your latest search in the
+                apps database (account needed).</li><br>
+          <li>6.    Once you have an account, you can view a maximum of 6 saved queries. You
+                have the option to make a .csv file from your saved query or delete it from
+                the app database.</li><br>
+          <li>7.    To download a .csv from one of your past queries, you have to click the 'Make CSV'
+                  button for that query, then click 'Download CSV'. If you would like
+                  to email a csv from a past query, click "Make CSV" then click 'Email CSV'.</li>
+        </ul>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Save changes</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <div class="infofooter modal-footer">
+        <a class="code-button" target="_blank" href="https://github.com/ytrevor81/Ali-Express-Web-Scraping-App">My Code</a>
+        <button type="button" data-dismiss="modal">OK</button>
       </div>
     </div>
   </div>

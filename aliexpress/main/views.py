@@ -11,6 +11,7 @@ from django.contrib.auth.forms import AuthenticationForm
 
 csvfilename = []
 checked_history = []
+email_notify = []
 
 def homepage(request):
     '''Variety of functions are occuring here: Login, web scraping, and when the user is
@@ -48,18 +49,17 @@ def homepage(request):
         print('amount = None')
 
     if search == None:
-        print('Message for user')
+        csvfilename.clear()
     elif search == "":
-        print('Message for user')
+        csvfilename.clear()
     else:
         PageSourceParsing.page_source(search, amount, checked)
-        csvfilename.append(search)
-        print("Scraping Complete")
+        PageSourceParsing.list_refresh(csvfilename, search)
 
     if checked != False:
-        checked_history.append(checked)
+        PageSourceParsing.list_refresh(checked_history, checked)
     else:
-        checked_history.append(False)
+        PageSourceParsing.list_refresh(checked_history, False)
 
     #Stores the most recent search, so the user can download or email the .csv file.
     if len(csvfilename) == 0:
@@ -75,14 +75,14 @@ def homepage(request):
                 print('Do a search or click a past search')
             else:
                 CSV_Handling.email_csv_file(filename, email)
-                print("Email sent!")
+                PageSourceParsing.list_refresh(email_notify, 'Sent')
         else:
             print('SIGN IN OR REGISTER')
     else:
         print('email_csv = {}'.format(email_csv))
+        email_notify.append('Not Sent')
 
     #Save CSV Function
-    print(filename)
     if save_csv == True:
         if request.user.is_authenticated:
             username = request.user.username
@@ -116,7 +116,7 @@ def homepage(request):
     else:
         queries = None
 
-    return render(request, "homepage.html", {"form": form, "filename": filename, "queries": queries})
+    return render(request, "homepage.html", {"form": form, "filename": filename, "queries": queries, "email": email_notify[-1]})
 
 def register(request):
     '''Register new users'''

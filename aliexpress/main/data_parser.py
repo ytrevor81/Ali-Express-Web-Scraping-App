@@ -34,3 +34,9 @@ class PageSourceParsing(object):
         nf_shipping = [x.get_text() for x in htmlshipping][:amount]
 
         CSV_Handling.convert_to_csv(search, amount, checked, titles, nf_prices, ratings, nf_sold, suppliers, nf_shipping) #will convert data into a .csv file
+
+    @classmethod
+    def list_refresh(cls, specific_list, element):
+        '''This will be used to refresh the lists in views.py'''
+        specific_list.clear()
+        specific_list.append(element)

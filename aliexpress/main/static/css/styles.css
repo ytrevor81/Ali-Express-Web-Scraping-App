@@ -33,11 +33,28 @@ strong { color: #FF4747; font-weight: normal; }
 .customrow { justify-content: space-between; margin: 0; }
  section { height: 55vh; border: 3px solid; }
 
+/* --- Email Alert --- */
+.email-alert {
+    position: absolute;
+    color: #fff;
+    top: 12%;
+    left: 44%;
+    background-color: rgba(255,205,3,0.5);
+  }
+.email-alert-button { color: #fff; margin-left: 15px; }
+
 /* --- Modals --- */
 .login-dialog { margin-top: 5%; max-width: 600px; }
 .login-content { background-color: rgba(0,0,0,0.7); border: 2px solid #FF4747; }
 .login-header { border: none; }
 .login-title { margin-left: 40%; font-size: 27px; }
+.info-title { margin-left: 24%; font-size: 27px; }
+.downloadbody .info-list {
+    list-style: none;
+    padding: 10px;
+    font-size: 17px;
+    text-align: start;
+}
 .login-close { color: #fff; }
 .login-body label {
     font-size: 18px;
@@ -83,7 +100,7 @@ strong { color: #FF4747; font-weight: normal; }
 .downloadcontent {
   margin-top: 100px;
   border: 2px solid #FFCD03;
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(0,0,0,0.9);
   font-size: 18px;
   color: #FFCD03; }
 .downloadheader { border: none; }
@@ -104,6 +121,39 @@ strong { color: #FF4747; font-weight: normal; }
   transition: 0.2s;
   border-color: #FF4747;
  }
+ .infofooter { border: none; display: flex; justify-content: space-evenly; }
+ .infofooter button {
+   width: 35%;
+   height: 45px;
+   background-color: #333;
+   color: #fff;
+   border: 1px solid #FFCD03;
+   cursor: pointer;
+   }
+ .infofooter a {
+   width: 35%;
+   padding: 8px;
+   height: 45px;
+   background-color: #333;
+   color: #fff;
+   border: 1px solid #FFCD03;
+   cursor: pointer;
+   }
+ .infofooter button:hover {
+   color: #fff;
+   background-color: inherit;
+   font-weight: bold;
+   transition: 0.2s;
+   border-color: #FF4747;
+  }
+  .infofooter a:hover {
+    color: #fff;
+    text-decoration: none;
+    background-color: inherit;
+    font-weight: bold;
+    transition: 0.2s;
+    border-color: #FF4747;
+   }
 
 
 /* --- Register --- */
@@ -367,3 +417,16 @@ strong { color: #FF4747; font-weight: normal; }
    .cluster button { font-size: 18px; }
    .download-csv a { font-size: 18px; }
  }
+
+@media screen and (max-width: 1400px) {
+  h1 { font-size: 50px; }
+  h4, h5 { font-size: 17px; }
+
+  .customnav { padding: 1rem 4rem; }
+  .product-search { margin: 0; top: 12%; width: 125%; }
+  .product-search input { width: 100%; font-size: 20px; }
+  .customrow {  }
+  .service {  }
+
+  .cluster button { font-size: 16px; }
+  .download-csv a { font-size: 16px; }
