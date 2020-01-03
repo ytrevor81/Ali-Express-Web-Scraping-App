@@ -9,9 +9,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 
 
-csvfilename = []
-checked_history = []
-email_notify = []
+####String Problem, User Refresh Problem, Styling
 
 def homepage(request):
     '''Variety of functions are occuring here: Login, web scraping, and when the user is
@@ -116,7 +114,7 @@ def homepage(request):
     else:
         queries = None
 
-    return render(request, "homepage.html", {"form": form, "filename": filename, "queries": queries, "email": email_notify[-1]})
+    return render(request, "homepage.html", {"form": form, "filename": filename, "queries": queries, "email": email_csv})
 
 def register(request):
     '''Register new users'''

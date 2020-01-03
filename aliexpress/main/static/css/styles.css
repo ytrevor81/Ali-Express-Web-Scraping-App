@@ -420,13 +420,22 @@ strong { color: #FF4747; font-weight: normal; }
 
 @media screen and (max-width: 1400px) {
   h1 { font-size: 50px; }
-  h4, h5 { font-size: 17px; }
+  h4, h5 { font-size: 16px; }
 
-  .customnav { padding: 1rem 4rem; }
-  .product-search { margin: 0; top: 12%; width: 125%; }
-  .product-search input { width: 100%; font-size: 20px; }
-  .customrow {  }
-  .service {  }
-
+  .customnav { padding: 1rem 5rem; font-size: 17px; }
+  .customcontainer { margin-top: 100px; max-width: 85%; margin-bottom: 15px; }
+   section { height: 54vh; border: 3px solid; }
+  .title-box { height: 50px; }
+  .web-scraping-services { margin: 15px 50px 0 50px; }
+  .slider-info p { margin: 5px 0 0 0; font-size: 16px; }
+  .checkbox { height: 25px; width: 25px; margin-right: 15px; }
+  .checkbox::before { background-color: rgba(0,0,0,0.5); border-color: rgba(0,0,0,0.1); }
+  .checkbox-label { font-size:  16px; }
+  .product-search { top: -50%; width: 139%; }
+  .product-search input {  height: 50px; font-size: 18px }
+  .scraping-button { height: 50px; font-size: 16px; margin-bottom: 20px; }
   .cluster button { font-size: 16px; }
-  .download-csv a { font-size: 16px; }
+  .download-csv { height: 55px; }
+  .download-csv a { font-size: 16px; padding: 15px; }
+  .email-save { height: 55px; }
+  .history-login h5 i { font-size: 17px; }
