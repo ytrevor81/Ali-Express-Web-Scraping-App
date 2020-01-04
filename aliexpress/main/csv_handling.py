@@ -1,4 +1,5 @@
 import pandas
+import os
 import numpy as np
 from .db_handling import *
 from django.core.mail import EmailMessage
@@ -14,6 +15,15 @@ class CSV_Handling(object):
         else:
             get_request = False
         return get_request
+
+    @classmethod
+    def csv_file_limit(cls, recent_query):
+        filename = recent_query + ".csv"
+        csv_files = [name for name in os.listdir('C://Users/User/Desktop/Ali-Express-Web-Scraping-App/aliexpress/main/static/csv_files')]
+        if len(csv_files) > 5:
+            for file in csv_files:
+                if file != filename:
+                    os.remove('C://Users/User/Desktop/Ali-Express-Web-Scraping-App/aliexpress/main/static/csv_files/{}'.format(file))
 
     @classmethod
     def convert_to_csv(cls, search, amount, checked, titles, nf_prices, rating, nf_sold, suppliers, nf_shipping):
@@ -32,7 +42,7 @@ class CSV_Handling(object):
         else:
             df = pandas.DataFrame({'Product': titles, 'Price': prices, 'Rating':ratings, 'Sold':sold, 'Supplier':suppliers})     #if 'free shipping' is not checked, the data will not be included in the .csv
         df.index += 1
-        df.to_csv('C://Users/User/Desktop/Ali-Express-Web-Scraping-App/aliexpress/main/media/csv_files/{}.csv'.format(search), index=True)     #THIS WILL PATH WILL CHANGE IN DEPLOYMENT
+        df.to_csv('C://Users/User/Desktop/Ali-Express-Web-Scraping-App/aliexpress/main/static/csv_files/{}.csv'.format(search), index=True)     #THIS WILL PATH WILL CHANGE IN DEPLOYMENT
 
     @classmethod
     def missing_elements_fix(cls, amount, string_list):
@@ -50,12 +60,12 @@ class CSV_Handling(object):
     def email_csv_file(cls, filename, user_email):
         body = "From your '{}' product search on (date)".format(filename)
         message = EmailMessage("AliExpress Webscraper Date .csv", body ,"aliexpressscrapingapp@gmail.com",[user_email])
-        message.attach_file('C://Users/User/desktop/ali-express-web-scraping-app/aliexpress/main/media/csv_files/{}.csv'.format(filename))
+        message.attach_file('C://Users/User/desktop/ali-express-web-scraping-app/aliexpress/main/static/csv_files/{}.csv'.format(filename))
         message.send()
 
     @classmethod
     def csv_to_db(cls, filename, username, checked):
-        data = pandas.read_csv('C://Users/User/Desktop/Ali-Express-Web-Scraping-App/aliexpress/main/media/csv_files/{}.csv'.format(filename))
+        data = pandas.read_csv('C://Users/User/Desktop/Ali-Express-Web-Scraping-App/aliexpress/main/static/csv_files/{}.csv'.format(filename))
         prices = data.Price.tolist()
         ratings = data.Rating.tolist()
         suppliers = data.Supplier.tolist()
@@ -87,4 +97,4 @@ class CSV_Handling(object):
         suppliers = eval(csv_list[5])
         df = pandas.DataFrame({'Product': products, 'Price': prices, 'Rating':ratings, 'Sold':sold, 'Supplier':suppliers})
         df.index += 1
-        df.to_csv('C://Users/User/Desktop/Ali-Express-Web-Scraping-App/aliexpress/main/media/csv_files/{}.csv'.format(search), index=True)     #THIS WILL PATH WILL CHANGE IN DEPLOYMENT
+        df.to_csv('C://Users/User/Desktop/Ali-Express-Web-Scraping-App/aliexpress/main/static/csv_files/{}.csv'.format(search), index=True)     #THIS WILL PATH WILL CHANGE IN DEPLOYMENT
