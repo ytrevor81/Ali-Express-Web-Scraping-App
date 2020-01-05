@@ -1,0 +1,16 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<!-- Modal Popup for Sign In -->
+{% include 'includes/login.html' %}
+
+<!-- Modal Popup for Information -->
+{% include 'includes/info.html' %}
+
+<div class="error-page">
+  <h1>404 Error</h1>
+  <h5>This page is not valid . Please return to the homepage <a href="/">here</a>. Thank you</h5>
+</div>
+
+{% endblock %}

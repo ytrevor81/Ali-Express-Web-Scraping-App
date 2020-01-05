@@ -14,18 +14,21 @@ class DB_Handling(object):
 
     @classmethod
     def db_to_csvlist(cls, username, id):
+        '''This returns a list of lists, made from extracting specific queries from
+        the database'''
         query = AliSubmission.objects.filter(User=username, id=id)
         for prop in query:
-            search = prop.Search
+            search = prop.Search    #each of these are lists
             products = prop.Products
             prices = prop.Prices
             ratings = prop.Ratings
             sold = prop.Sold
             suppliers = prop.Suppliers
-        return [search, products, prices, ratings, sold, suppliers]
+        return [search, products, prices, ratings, sold, suppliers]     #list of lists to be converted to a csv file
 
     @classmethod
     def delete_from_db(cls, username, id):
-        query = AliSubmission.objects.filter(User=username, id=id)
+        '''Deletes a selected past query for the user'''
+        query = AliSubmission.objects.filter(User=username, id=id)  #id is probably good enough, but I wanted to include username to ensure accuracy
         query.delete()
         print('Deleted')

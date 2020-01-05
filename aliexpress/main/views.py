@@ -9,7 +9,8 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 
 
-csvfilename = []
+csvfilename = []    #to store the most recent query, so that the user can download the csv file without being logged in---THIS IS NOT DESIGNED FOR MORE THAN ONE USER AT A TIME!!!! in order to scale this project, this code has to be seriously revised
+checked_history = []    #to store if the recent query checked "True" for free shipping
 
 
 def homepage(request):
@@ -22,7 +23,7 @@ def homepage(request):
     checked = request.GET.get('freeshipping')
     history_download = request.GET.get('download-query')
     history_delete = request.GET.get('delete-query')
-    email_csv = CSV_Handling.boolean_convert(request.GET.get('email-csv'))
+    email_csv = CSV_Handling.boolean_convert(request.GET.get('email-csv'))  #the boolean_convert() method converts the GET request into a boolean value
     save_csv = CSV_Handling.boolean_convert(request.GET.get('save-data'))
 
     #Account Verification and User Login
@@ -34,7 +35,7 @@ def homepage(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect("homepage")
+                return redirect("homepage")     #redirects the user to the homepage again; like refreshing the page
             else:
                 print("INVALID")
 
@@ -43,24 +44,31 @@ def homepage(request):
 
     #Web Scraping function---no need for user verification
     if amount_string != None:
-        amount = int(amount_string)
+        amount = int(amount_string)     #converts the slider amount into an integer
     else:
         print('amount = None')
 
     if search == None:
-        csvfilename.clear()
-    elif search == "":
-        csvfilename.clear()
+        print('search = None')
+    elif search == "":      #ensures the program doesn't crash if the user submits the form without typing in a product name or category
+        print('nothing happened')
+        csvfilename.clear()     #clears the most recent file name, in case of any unexpected errors
     else:
-        PageSourceParsing.page_source(search, amount, checked)
-        PageSourceParsing.list_refresh(csvfilename, search)
-        CSV_Handling.csv_file_limit(search) #Limits the number of csv files in the directory to 5
+        PageSourceParsing.page_source(search, amount, checked)  #executes the webscraping functionality
+        PageSourceParsing.list_refresh(csvfilename, search)     #ensures the most recent query is in the csvfilename list
+        CSV_Handling.csv_file_limit(search)     #Limits the number of csv files in the directory to 5
 
     #Stores the most recent search, so the user can download or email the .csv file.
     if len(csvfilename) == 0:
         filename = None
     else:
         filename = csvfilename[-1]
+
+    #If the free shipping option is checked, this stores 'True' in the boolean list
+    if checked != None:
+        PageSourceParsing.list_refresh(checked_history, True)
+    else:
+        PageSourceParsing.list_refresh(checked_history, False)
 
     #Email CSV function
     if email_csv == True:
@@ -70,12 +78,10 @@ def homepage(request):
                 print('Do a search or click a past search')
             else:
                 CSV_Handling.email_csv_file(filename, email)
-                #PageSourceParsing.list_refresh(email_notify, 'Sent')
         else:
             print('SIGN IN OR REGISTER')
     else:
         print('email_csv = {}'.format(email_csv))
-        #email_notify.append('Not Sent')
 
     #Save CSV Function
     if save_csv == True:
@@ -85,7 +91,6 @@ def homepage(request):
                 print('Do a search or click a past search')
             else:
                 CSV_Handling.csv_to_db(filename, username, checked_history[-1])
-                print("Data saved!")
         else:
             print("SIGN IN OR REGISTER")
     else:
@@ -95,26 +100,33 @@ def homepage(request):
     if request.user.is_authenticated:
         username = request.user.username
         queries = AliSubmission.objects.filter(User=username)[:6]
-        print(len(queries))
+        print(queries)
         if history_download != None:
-            string_tuple = history_download.partition("---")
+            string_tuple = history_download.partition("---")    #the GET request comes in 'query---tableID'. here we separate those from each other
             filename = string_tuple[0]
             id = string_tuple[2]
-            CSV_Handling.history_to_csv(username, id)
-            csvfilename.append(filename)
+            CSV_Handling.history_to_csv(username, id)   #this converts the db data from the past query to a csv file
+            csvfilename.append(filename)    #this query is put in this list to givbe access to the csv file
         else:
             print('history download = None')
         if history_delete != None:
-            DB_Handling.delete_from_db(username, history_delete)
+            DB_Handling.delete_from_db(username, history_delete)    #deletes the past query from the database
         else:
             print('history delete = None')
     else:
         queries = None
 
-    return render(request, "homepage.html", {"form": form, "filename": filename, "queries": queries, "email": email_csv})
+    #In case the query has whitespace, this is to ensure it matches with stored csv files that were processed with whitespace
+    if filename != None:
+        html_filename = filename.replace(" ", "_")
+    else:
+        html_filename = filename
+
+    return render(request, "homepage.html", {"form": form, "filename": html_filename, "queries": queries, "email": email_csv,
+                                             "save": save_csv, "search":search, "history_csv": history_download })
 
 def register(request):
-    '''Register new users'''
+    '''Registers new users using Django forms'''
 
     if request.method == "POST":
         form = RegisterForm(request.POST)
@@ -131,5 +143,6 @@ def register(request):
     return render(request, "register.html", {"register_form": register_form, "form": login_form})
 
 def logout_request(request):
+    '''Logs out users and directs them back to the homepage'''
     logout(request)
     return redirect("homepage")

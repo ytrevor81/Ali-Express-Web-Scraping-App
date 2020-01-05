@@ -16,13 +16,31 @@
 
 {% if email == True %}
   <div class="email-alert alert" role="alert">
-    Email Sent!
+    Email Sent
     <button type="button" class="email-alert-button close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
+{% elif history_csv != None %}
+  <div class="email-alert alert" role="alert">
+    CSV for past query "{{filename}}" ready
+    <button type="button" class="email-alert-button close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{% elif search == "None" %}
+  <!--Ignore-->
+{% elif search == None %}
+  <!--Ignore-->
+  {% elif search == "" %}
+    <!--Ignore-->
 {% else %}
-  <!-- Email CSV function not called -->
+  <div class="email-alert alert" role="alert">
+    CSV for "{{filename}}" ready
+    <button type="button" class="email-alert-button close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
 {% endif %}
 
 <!-- Main Service and User History -->
