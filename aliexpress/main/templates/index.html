@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AliExpress Web Scrape</title>
-    <meta name="description" content="A Django web app that allows you to browse and search NFL player and team stats up until the 2018 season.">
+    <title>AliExpress Web Scraping App</title>
+    <meta name="description" content="A Django web app that allows you to webscrape AliExpress for data on any product you search.">
 
     {% load static %}
     <!-- External Stylesheets -->
@@ -24,7 +24,7 @@
       <!-- Navbar/Top Info -->
       <header class="customnav navbar">
         <h5><a href="#" data-toggle="modal" data-target=".info">Information</a></h5>
-        <a class="homepage-link" href="/"><h1>Ali<strong>Express</strong> Data<strong>Scraper</strong></h1></a>
+        <h1>Ali<strong>Express</strong> Data<strong>Scraper</strong></h1>
         {% if user.is_authenticated %}
           <div class="user-messages">
             <h5>Welcome, <strong>{{ user.username }}</strong></h5>

@@ -96,9 +96,9 @@ strong { color: #FF4747; font-weight: normal; }
   border-color: #FF4747;
  }
 
-/* --- Downloadcsv Popup Modal --- */
+/* --- Popup Modals --- */
 .downloadcontent {
-  margin-top: 100px;
+  margin-top: 75px;
   border: 2px solid #FFCD03;
   background-color: rgba(0,0,0,0.9);
   font-size: 18px;
@@ -423,19 +423,133 @@ strong { color: #FF4747; font-weight: normal; }
   h4, h5 { font-size: 16px; }
 
   .customnav { padding: 1rem 5rem; font-size: 17px; }
+
   .customcontainer { margin-top: 100px; max-width: 85%; margin-bottom: 15px; }
+
    section { height: 54vh; border: 3px solid; }
+
   .title-box { height: 50px; }
   .web-scraping-services { margin: 15px 50px 0 50px; }
   .slider-info p { margin: 5px 0 0 0; font-size: 16px; }
   .checkbox { height: 25px; width: 25px; margin-right: 15px; }
   .checkbox::before { background-color: rgba(0,0,0,0.5); border-color: rgba(0,0,0,0.1); }
   .checkbox-label { font-size:  16px; }
-  .product-search { top: -50%; width: 139%; }
+  .product-search { top: -170px; width: 139%; }
   .product-search input {  height: 50px; font-size: 18px }
   .scraping-button { height: 50px; font-size: 16px; margin-bottom: 20px; }
   .cluster button { font-size: 16px; }
   .download-csv { height: 55px; }
   .download-csv a { font-size: 16px; padding: 15px; }
   .email-save { height: 55px; }
+
   .history-login h5 i { font-size: 17px; }
+  .query-box .search-date { padding: 5px 5px 3px 12px; }
+  .query-box .search-date .user-search { font-size: 11px; }
+  .query-box .search-date .user-search-date { font-size: 8px; }
+  .query-box { font-size: 12px; }
+
+
+  .registerrow { border: none; margin: -100px 8% 30px 8%; }
+  .register-main { width: 75%; }
+  .register-container { font-size: 15px; margin-top: 0; }
+  .register-container input { height: 25px; }
+  .register-container .password-info { font-size: 10px; padding: 5px; }
+  .register-container .register-button { height: 40px; font-size: 16px; margin-top: 0; }
+  .registerrow h5 { font-size: 15px; margin-top: 12px; }
+
+}
+
+@media screen and (max-width: 1125px) {
+  h1 { font-size: 40px; }
+
+  .product-search { top: -160px; width: 139%; }
+  .product-search input {  height: 40px; font-size: 17px }
+
+  .registerrow h5 { display: none; }
+
+  .query-box .search-date { padding: 5px 5px 3px 12px; }
+  .query-box .search-date .user-search-date { font-size: 7px; }
+
+}
+
+@media screen and (max-width: 950px) {
+  h5 { font-size: 14px; }
+  h4 { font-size: 14px; }
+  .Main { height: 160vh; }
+
+  .info-title { margin-left: 24%; font-size: 25px; }
+
+  .login-dialog { max-width: 475px; }
+  .login-title { margin-left: 40%; font-size: 24px; }
+  .info-title { margin-left: 24%; font-size: 24px; }
+  .downloadbody .info-list { font-size: 15px; }
+  .login-body label { font-size: 15px; margin-right: 15px; }
+  .login-body input { width: 275px; margin-bottom: 15px; }
+  .login-footer div { font-size: 15px; }
+  .login-button { margin-bottom: 15px; height: 30px; margin-top: 25px; }
+
+
+  .downloadcontent { font-size: 15px; }
+  .downloadfooter button { height: 35px; }
+
+  .customcontainer { margin-bottom: 50px; }
+  .customrow { display: flex; flex-direction: column; align-items: center; }
+
+  .service { max-width: 90%; margin-right: 0; margin-bottom: 25px; }
+  .product-search { top: -160px; width: 98%; }
+  .slidercontainer { margin-top: -45px; }
+  .slider { height: 18px; }
+  .slider-info { font-size: 14px; }
+  .slider-info p { margin: 0; font-size: 14px; }
+  .checkbox-label { font-size: 15px; }
+  .scraping-button { height: 40px; font-size: 14px; margin-bottom: 70px; }
+
+  .history { max-width: 50%; height: 350px; }
+  .query-box .search-date { padding: 5px 13% 3px 12%; }
+
+  .register-container .password-info { display: block; }
+}
+
+@media screen and (max-width: 780px) {
+  h1 { font-size: 30px; }
+  h5 { font-size: 12px; }
+  h4 { font-size: 12px; }
+
+  .info-title { font-size: 20px; }
+
+  .slider-info p { font-size: 12px; }
+  .checkbox-label { font-size: 13px; }
+  .scraping-button { font-size: 13px; }
+
+  .download-csv { height: 45px; }
+  .email-save { height: 45px; }
+  .download-csv a { font-size: 12px; }
+  .cluster button { font-size: 12px; }
+}
+
+@media screen and (max-width: 650px) {
+  .customnav { display: flex; flex-direction: column; }
+  .customconatiner { margin-top: 70px; }
+  .download-csv a { padding: 6px; }
+}
+
+@media screen and (max-width: 530px) {
+  .register-container .password-info { display: none; }
+}
+
+@media screen and (max-width: 480px) {
+
+  .Main { height: 170vh; }
+  .service { max-width: 100%; }
+
+  .download-csv a { padding: 6px; }
+  .infofooter a { font-size: 12px; padding: 13px; }
+
+}
+
+@media screen and (max-width: 400px) {
+  .login-body input { width: 200px; }
+  .login-footer div { font-size: 10px; }
+
+  .register-container .register-button { font-size: 12px; }
+}
