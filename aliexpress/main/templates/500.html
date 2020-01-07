@@ -9,18 +9,17 @@
 {% include 'includes/info.html' %}
 
 <div class="error-page">
-  <h1>500 Server Error --> An error was raised in the backend of this app</h1>
-  <h5>Return to the homepage <a>here</a>. In the meantime, here are possible reasons why you are seeing this page:</h5>
+  <h1>500 Server Error --> An error was raised in the backend of this app</h1><br>
+  <h5>Return to the homepage <a href="/"><strong>here</strong></a>. In the meantime, here are possible reasons why you are seeing this page:</h5>
   <ul>
-    <li>1.  There was a TimeoutException error raised through Selenium (this is the library we are using to scrape data from AliExpress)
-           There are a few different reasons why this occured: First, the robot-controlled browser got caught by robot-protections on
-            AliExpress. Second, you could have been impatient with the process and exited out of the browser before selenium closed the browser
-            itself(it has to close the browser, or the following code will not work). Third, your search could have gathered 0 results from
-            AliExpress.</li><br><br>
-    <li>2.  The amount of products you wanted in your query exceed the amount of products listed on AliExpress page we are processing. If
-            this is the case, try to choose a different product, or use better keywords in your queries. </li><br><br>
+    <li>1.  There was a TimeoutException error raised through Selenium (this is the library I am using to scrape data from AliExpress).
+           There are a few different reasons why this occured: First, the crawler got caught by robot-protections on
+            AliExpress. Second, you could have exited out of the browser before Selenium closed the browser itself (it has to close
+            the browser, or the following code will not work). Third, your search could have gathered 0 results from AliExpress.</li><br><br>
+    <li>2.  The amount of products you wanted in your query exceed the amount of products listed on the AliExpress page we are processing. If
+            this is the case, choose a different product, or use better keywords in your queries. </li><br><br>
     <li>3.  The robot-controlled browser did not open properly on your computer, which would be an error associated with how
-            I am utitilzing selenium</li><br><br>
+            I am utilizing Selenium.</li><br><br>
 
     <li>4.  An unknown and unexpected error that I should look into and fix right away ;)</li><br><br>
   </ul>

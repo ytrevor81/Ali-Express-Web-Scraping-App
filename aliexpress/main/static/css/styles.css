@@ -396,6 +396,13 @@ strong { color: #FF4747; font-weight: normal; }
 .query-box .query-options button { border: none; color: #fff; height: 50%; cursor: pointer; }
 .query-box .query-options button:hover { border: 1px solid #fff; background-color: inherit; }
 
+/* --- Error Pages --- */
+.error-page { margin-top: -75px; }
+.error-page h1 { font-size: 35px; }
+.error-page ul { color: #FFCD03; font-size: 18px; list-style: none; text-align: left; margin-top: 50px; }
+
+.link-error { margin-bottom: 100px; }
+.link-error-text { margin-bottom: 420px; }
 
 /* --- Footer --- */
 .bottom-of-app a { color: #FFCD03; }
@@ -525,6 +532,8 @@ strong { color: #FF4747; font-weight: normal; }
   .email-save { height: 45px; }
   .download-csv a { font-size: 12px; }
   .cluster button { font-size: 12px; }
+
+  .error-page ul { font-size: 15px; }
 }
 
 @media screen and (max-width: 650px) {
@@ -552,4 +561,6 @@ strong { color: #FF4747; font-weight: normal; }
   .login-footer div { font-size: 10px; }
 
   .register-container .register-button { font-size: 12px; }
+
+  .error-page ul { font-size: 13px; }
 }
