@@ -19,7 +19,7 @@ Django | Beautiful Soup (BS4) | PostgreSQL | Selenium | Bootstrap CSS | JQuery |
 
 2. Clicking the "Collect Data" button will web scrape an aliexpress.com query page, using the user's query from the search bar. 
 
-3. After about 1 minute, a CSV file can be downloaded by the user by clicking the "Download CSV" button.
+3. Once the HTML of the aliexpress.com page is successfully parsed, a CSV file can be downloaded by the user by clicking the "Download CSV" button.
 
 4. <i>With user authentication</i>, the user has the option to email their CSV file to themselves by clicking the "Email CSV" button. 
 
