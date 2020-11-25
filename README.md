@@ -1,4 +1,4 @@
-# Ali-Express-Web-Scraping-App
+# Ali Express Web Scraping App
 
 A Django web app that extracts and parses the HTML of an AliExpress.com product query page. The user receives a CSV file of all product info from the page and can save their data in a PostgreSQL database.
 
